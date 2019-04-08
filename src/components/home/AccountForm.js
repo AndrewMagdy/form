@@ -2,9 +2,12 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import * as actions from "../../actions/types";
 import TextField from "@material-ui/core/TextField";
-
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-
+function submit(values, dispatch) {
+  console.log("submit");
+  dispatch({
+    type: actions.SUBMIT_SUCCESS
+  });
+}
 const asyncValidate = async (values, dispatch) => {
   try {
     await new Promise((resolve, reject) => {
@@ -107,5 +110,6 @@ export default reduxForm({
   form: "MaterialUiForm", // a unique identifier for this form
   validate,
   asyncValidate,
-  asyncBlurFields: ["iban"]
+  asyncBlurFields: ["iban"],
+  onSubmit: submit
 })(MaterialUiForm);

@@ -1,2 +1,6 @@
+export const SUBMIT_SUCCESS = "SUBMIT_SUCCESS";
+export const SHOW_DIALOG = "SHOW_DIALOG";
+export const HIDE_DIALOG = "HIDE_DIALOG";
+
 export const VALIDATE_IBAN = "VALIDATE_IBAN";
 export const VALIDATE_SUCCESS = "VALIDATE_SUCCESS";

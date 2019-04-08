@@ -1,16 +1,18 @@
 import React from "react";
 import MaterialUiForm from "./AccountForm";
 
-const HomeComponent = () => (
+const HomeComponent = props => (
   <div
     style={{
       display: "flex",
       flex: 1,
+      flexDirection: "row",
       alignItems: "center",
       justifyContent: "center"
     }}
   >
-    <MaterialUiForm onSubmit={() => console.log("Hi")} />
+    <MaterialUiForm />
+    {props.form}
   </div>
 );
 
