@@ -1,0 +1,2 @@
+export const VALIDATE_IBAN = "VALIDATE_IBAN";
+export const VALIDATE_SUCCESS = "VALIDATE_SUCCESS";
