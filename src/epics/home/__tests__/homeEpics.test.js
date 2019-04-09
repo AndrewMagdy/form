@@ -4,6 +4,7 @@ import { submitEpic, validateEpic } from "../homeEpics";
 import { ajax } from "rxjs/ajax";
 import { of } from "rxjs";
 import { TestScheduler } from "rxjs/testing";
+import { delayDur } from "../../../constants/constants";
 
 jest.mock("rxjs/ajax");
 
@@ -32,7 +33,7 @@ describe("HomeEpics", () => {
          Thats 2999ms instead of 3000ms
 
         */
-      expectObservable(output$).toBe("-a 2999ms b", {
+      expectObservable(output$).toBe(`-a ${delayDur - 1}ms b`, {
         a: {
           type: actionsTypes.SHOW_DIALOG
         },

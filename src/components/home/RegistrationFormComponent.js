@@ -1,7 +1,10 @@
 import React from "react";
+import { registrationFormId } from "../../constants/constants";
 import { Field, reduxForm } from "redux-form";
 import { validateIban, submitForm } from "../../actions/home/homeActions";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import { Grid } from "@material-ui/core";
 
 const submit = (values, dispatch) => {
   submitForm(values)(dispatch);
@@ -13,10 +16,9 @@ const asyncValidate = async (values, dispatch) => {
       validateIban(values, { resolve, reject })(dispatch);
     });
   } catch (err) {
-    console.log("err", err);
-    throw {
+    return Promise.reject({
       iban: "Invalid IBAN"
-    };
+    });
   }
 };
 
@@ -64,45 +66,54 @@ const renderTextField = ({
 const RegistrationForm = props => {
   const { handleSubmit, pristine, submitting } = props;
   return (
-    <form
-      style={{
-        display: "flex",
-        flex: 1,
-        flexDirection: "column",
-        marginRight: "25%",
-        marginLeft: "25%",
-        marginTop: "10%"
-      }}
-      onSubmit={handleSubmit}
-    >
-      <div>
-        <Field
-          name="firstName"
-          component={renderTextField}
-          label="First Name"
-        />
-      </div>
-      <div>
-        <Field name="lastName" component={renderTextField} label="Last Name" />
-      </div>
-      <div>
-        <Field name="email" component={renderTextField} label="Email" />
-      </div>
+    <form onSubmit={handleSubmit}>
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+        alignContent="center"
+        spacing={24}
+      >
+        <Grid item xs={12}>
+          <Field
+            name="firstName"
+            component={renderTextField}
+            label="First Name"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Field
+            name="lastName"
+            component={renderTextField}
+            label="Last Name"
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Field name="email" component={renderTextField} label="Email" />
+        </Grid>
 
-      <div>
-        <Field name="iban" component={renderTextField} label="IBAN" />
-      </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>
-          Submit
-        </button>
-      </div>
+        <Grid item xs={12}>
+          <Field name="iban" component={renderTextField} label="IBAN" />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            disabled={pristine || submitting}
+          >
+            Submit
+          </Button>
+        </Grid>
+      </Grid>
     </form>
   );
 };
 
 export default reduxForm({
-  form: "RegistrationForm", // a unique identifier for this form
+  form: registrationFormId,
   validate,
   asyncValidate,
   asyncBlurFields: ["iban"],

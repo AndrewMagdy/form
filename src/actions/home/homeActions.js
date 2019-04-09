@@ -26,7 +26,7 @@ export const validateIbanFail = () => ({
 export const validateIbanRequest = (value, { resolve, reject }) => ({
   type: VALIDATE_IBAN_REQUEST,
   payload: value,
-  meta: { resolve, reject } // the epic is responsible for calling these\
+  meta: { resolve, reject }
 });
 
 export const submitFormSuccess = values => ({

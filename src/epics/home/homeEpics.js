@@ -7,7 +7,8 @@ import {
   catchError,
   retry,
   delay,
-  concat
+  concat,
+  exhaustMap
 } from "rxjs/operators";
 import {
   showDialog,
@@ -15,14 +16,13 @@ import {
   validateIbanSuccess,
   validateIbanFail
 } from "../../actions/home/homeActions";
+import { delayDur } from "../../constants/constants";
 import * as actionsTypes from "../../actions/types";
-
-const delayDur = 3000;
 
 export const submitEpic = action$ =>
   action$.pipe(
     ofType(actionsTypes.SUBMIT_SUCCESS),
-    switchMap(action =>
+    exhaustMap(action =>
       of(showDialog()).pipe(concat(of(hideDialog()).pipe(delay(delayDur))))
     )
   );
