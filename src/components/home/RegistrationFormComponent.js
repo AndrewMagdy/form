@@ -1,21 +1,16 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import * as actions from "../../actions/types";
+import { validateIban, submitForm } from "../../actions/home/homeActions";
 import TextField from "@material-ui/core/TextField";
-function submit(values, dispatch) {
-  console.log("submit");
-  dispatch({
-    type: actions.SUBMIT_SUCCESS
-  });
-}
+
+const submit = (values, dispatch) => {
+  submitForm(values)(dispatch);
+};
+
 const asyncValidate = async (values, dispatch) => {
   try {
     await new Promise((resolve, reject) => {
-      dispatch({
-        type: actions.VALIDATE_IBAN,
-        payload: values,
-        meta: { resolve, reject } // the epic is responsible for calling these
-      });
+      validateIban(values, { resolve, reject })(dispatch);
     });
   } catch (err) {
     console.log("err", err);
@@ -66,8 +61,8 @@ const renderTextField = ({
   />
 );
 
-const MaterialUiForm = props => {
-  const { handleSubmit, pristine, reset, submitting, classes } = props;
+const RegistrationForm = props => {
+  const { handleSubmit, pristine, submitting } = props;
   return (
     <form
       style={{
@@ -107,9 +102,9 @@ const MaterialUiForm = props => {
 };
 
 export default reduxForm({
-  form: "MaterialUiForm", // a unique identifier for this form
+  form: "RegistrationForm", // a unique identifier for this form
   validate,
   asyncValidate,
   asyncBlurFields: ["iban"],
   onSubmit: submit
-})(MaterialUiForm);
+})(RegistrationForm);

@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import HomeComponent from "../../components/home/HomeComponent";
 
 const mapStateToProps = state => ({
-  formState: state.form
+  formState: state.form,
+  showMessage: state.home.showMessage
 });
 
 const mapDispatchToProps = dispatch => ({});

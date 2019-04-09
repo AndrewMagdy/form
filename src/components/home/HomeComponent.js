@@ -1,18 +1,26 @@
 import React from "react";
-import MaterialUiForm from "./AccountForm";
+import RegistrationForm from "./RegistrationFormComponent";
 
 const HomeComponent = props => (
   <div
     style={{
       display: "flex",
       flex: 1,
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center"
+      flexDirection: "column"
     }}
   >
-    <MaterialUiForm />
-    {props.form}
+    {props.showMessage && (
+      <h1
+        style={{
+          display: "flex",
+          flex: 1,
+          alignSelf: "center"
+        }}
+      >
+        Success
+      </h1>
+    )}
+    <RegistrationForm />
   </div>
 );
 

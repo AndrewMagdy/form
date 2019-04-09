@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomeEpics Should fail validation 1`] = `
+Object {
+  "type": "VALIDATE_FAIL",
+}
+`;
+
+exports[`HomeEpics Should validate successfly 1`] = `
+Object {
+  "type": "VALIDATE_SUCCESS",
+}
+`;
