@@ -21,6 +21,6 @@ To run the tests
 
 # Notes
 
-For the UI, I used a generic material ui components, if you want the project to exactly match the screenshot I could modify the project
+For the UI, I used generic material ui components, if you want the project to match the screenshot I could modify the project
 
 
